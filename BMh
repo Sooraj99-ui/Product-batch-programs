@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+ char text[]="JIM SAW ME IN THE BARBER SHOP AND THE BARBER WAS VERY BUSY TALKING TO ANOTHER BARBER";
+ char pattern[]="WAS V";
+ int BMT[128];
+ int plen,tlen,p_ind,t_ind,safe,ind;
+ for(plen=0;pattern[plen];plen++);
+ for(tlen=0;text[tlen];tlen++);
+ for(ind=0 ;ind<128;ind++)
+    BMT[ind]= plen;
+ for(ind =0 ; ind<plen-1;ind++)
+     BMT[pattern[ind]]= plen - ind -1;
+
+  safe = t_ind=p_ind=plen-1;
+   while(safe<tlen)
+  {
+   while(p_ind >=0 &&text[t_ind] == pattern[p_ind])
+   {
+       t_ind--;
+       p_ind--;
+   }
+   if(p_ind==-1)//pat found
+      printf("\nFound");
+   safe= t_ind = BMT[text[safe]] + safe;
+   p_ind = plen-1;
+ }
+ return 0 ;
+}
